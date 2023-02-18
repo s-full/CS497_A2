@@ -2,10 +2,8 @@ import java.util.HashMap;
 
 public class MajorityElement {
 	public static int MajorityElement(int[] list) {
-
 		//load elements of list into a HashMap
 		HashMap<Integer,Integer> myMap = new HashMap<>();
-
 		int sol = -99;
 
 		for (int ele : list) {
@@ -16,7 +14,6 @@ public class MajorityElement {
 			else {
 				myMap.put(ele, 1);
 			}
-
 			if (myMap.get(ele) > list.length/2) {
 				sol = ele;
 			}

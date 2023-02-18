@@ -1,34 +1,34 @@
 public class kLargest {
     public static int kLargest(int[] arr, int k) {
-        int kIndex = arr.length-k;
-        
-        return kLargest.quickSelect(arr, 0, arr.length-1,k);
-    }
+        int kIndex = arr.length - k;
+        int left = 0, right = arr.length - 1;
+        int pivot = arr[right];
+        int currIndex = left;
+        int temp;
 
-    private static int quickSelect(int[] arr, int left, int right, int kIndex) {
-        int pivot = right;
-        int lPoint = left;
+        while (true) {
 
-        for (int i = lPoint; i < pivot; i++) {
-            if (arr[i] <= pivot) {
-                int temp = arr[lPoint];
-                arr[lPoint] = arr[i];
-                arr[i] = temp;
-                lPoint++;
+            for (int i = left; i < right - 1; i++) {
+                if (arr[i] <= pivot) {
+                    temp = arr[i];
+                    arr[i] = arr[currIndex];
+                    arr[currIndex] = temp;
+                    currIndex++;
+                }
+            }
+            temp = arr[currIndex];
+            arr[currIndex] = arr[right];
+            arr[right] = temp;
+
+            if (currIndex > kIndex) {
+                right = currIndex - 1;
+                currIndex = left;
+            } else if (currIndex < kIndex) {
+                left = currIndex + 1;
+                currIndex = left;
+            } else {
+                return arr[currIndex];
             }
         }
-        int temp2 = arr[lPoint];
-        arr[lPoint] = arr[right];
-        arr[right] = temp2;
-
-        if (lPoint > kIndex) {
-            return quickSelect(arr, left, lPoint-1, kIndex);
-        }
-        else if (lPoint < kIndex) {
-            return quickSelect(arr, lPoint+1, right, kIndex);
-        
-        }
-        else return arr[lPoint];
-
     }
 }
