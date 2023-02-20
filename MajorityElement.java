@@ -6,16 +6,16 @@ public class MajorityElement {
 		HashMap<Integer,Integer> myMap = new HashMap<>();
 		int sol = -99;
 
-		for (int ele : list) {
+		for (int i = 0; i < list.length; i++) {
 			
-			if (myMap.containsKey(ele)) {
-				myMap.put(ele, myMap.get(ele)+1);		
+			if (myMap.containsKey(list[i])) {
+				myMap.put(list[i], myMap.get(list[i])+1);
 			}
 			else {
-				myMap.put(ele, 1);
+				myMap.put(list[i], 1);
 			}
-			if (myMap.get(ele) > list.length/2) {
-				sol = ele;
+			if (myMap.get(list[i]) > list.length/2) {
+				sol = list[i];
 			}
 		}
 		return sol;
